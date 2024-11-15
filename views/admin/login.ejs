@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="/styles/adminlogin.css">
+<div class="container">
+    <div class="screen">
+        <div class="screen__content">
+            <!-- Admin Heading -->
+            <h2 class="admin-heading">Admin Login</h2>
+            <!-- Login Form -->
+            <form class="login" action="/admin/login" method="post">
+
+             
+                <div class="login__field">
+                    <i class="login__icon fas fa-user"></i>
+                    <input id="email" type="text" class="login__input" placeholder="User name / Email" name="email">
+                </div>
+                <div class="login__field">
+                    <i class="login__icon fas fa-lock"></i>
+                    <input id="password" type="password" class="login__input" placeholder="Password" name="password">
+                </div>
+                <button type="submit" class="button login__submit">
+                    <span class="button__text">Log In Now</span>
+                    <i class="button__icon fas fa-chevron-right"></i>
+                </button>  
+                <div id="validationMessage" style="color: rgb(0, 0, 0); margin:30px; margin-left: 70px; font-weight: bold;"></div>              
+            </form>
+        </div>
+        <div class="screen__background">
+            <span class="screen__background__shape screen__background__shape4"></span>
+            <span class="screen__background__shape screen__background__shape3"></span>        
+            <span class="screen__background__shape screen__background__shape2"></span>
+            <span class="screen__background__shape screen__background__shape1"></span>
+        </div>        
+    </div>
+</div>
+
+<script>
+     document.addEventListener('DOMContentLoaded', function () {
+        document.querySelector('form').addEventListener('submit', formValidate);
+    });
+
+    function formValidate(e) {
+        // Prevent form from submitting right away
+        e.preventDefault();
+
+        // Get input values
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const validationMessage = document.getElementById('validationMessage');
+
+        // Clear previous validation messages
+        validationMessage.textContent = '';
+
+        // Email format validation (simple regex)
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Basic validation rules
+        if (!email) {
+            validationMessage.textContent = "Email is required.";
+            return false;
+        } else if (!emailPattern.test(email)) {
+            validationMessage.textContent = "Please enter a valid email address.";
+            return false;
+        }
+
+        if (password.length < 4) {
+            validationMessage.textContent = "Password must be at least 3 characters.";
+            return false;
+        }
+
+        // If validation passes, submit the form
+        e.target.submit();
+        return true;
+    }
+</script>

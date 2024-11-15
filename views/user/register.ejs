@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="/styles/userlogin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <img src="https://i.pinimg.com/736x/bd/ac/32/bdac327b05ddaa05216dfa08c9e734c3.jpg" alt="">
+    <div class="container">
+        <form method="post" action="/user/register">
+            <h1>Sign Up</h1>
+
+            <% if (message) { %>
+                <div style="color: red; font-weight: bold;"><%= message %></div>
+            <% } %>
+    
+    
+            <div class="input-box">
+                <input id="name" type="text" placeholder="Name" name="name">
+                <i class="bx bx-user"></i>
+            </div>
+            
+            <div class="input-box">
+                <input id="email" type="email" placeholder="Email" name="email">
+                <i class='bx bx-envelope'></i>
+            </div>
+
+            <div class="input-box">
+                <input id="password" type="password" placeholder="Password" name="password">
+                <i class='bx bx-lock-alt'></i>
+            </div>
+
+            <div class="input-box">
+                <input id="confirmPassword" type="password" placeholder="Confirm Password" name="confirmPassword">
+                <i class='bx bx-lock-alt'></i>
+            </div>
+
+            
+            
+            <button class="btn" type="submit" >Sign Up</button>
+
+            
+            
+            <!-- Validation Message Section -->
+            <div id="validation-message" style="color: red; margin-top: 10px; font-weight:bold ;"></div>
+            
+
+            <div class="register">
+                <p>Already have an account? <br> <a href="login">Login</a></p>
+            </div>
+        </form>
+    </div>
+
+    <!-- JavaScript for form validation -->
+    <script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('form').addEventListener('submit', formValidate);
+});
+
+
+        function formValidate(e) {
+             e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const validationMessage = document.getElementById('validation-message');
+
+            // Clear previous validation messages
+            validationMessage.textContent = '';
+
+            // Basic validation rules
+            if (!name) {
+                validationMessage.textContent = "Name is required.";
+                return false;
+            }
+            if (!email) {
+                validationMessage.textContent = "Email is required.";
+                return false;
+            }
+            if (password.length < 6) {
+                validationMessage.textContent = "Password must be at least 6 characters.";
+                return false;
+            }
+            if (password !== confirmPassword) {
+                validationMessage.textContent = "Passwords do not match.";
+                return false;
+            }
+          e.target.submit();
+            return true; // Form will be submitted if validation passes
+        }
+    </script>
+
+</body>
+</html>

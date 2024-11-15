@@ -1,0 +1,19 @@
+
+.main-include {
+    width: 40%;
+    border-radius:16px ;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color:rgba(234, 255, 5, 0.945)
+  
+  
+  }
+  #connt {
+    display: flex;
+    justify-content: center;
+    
+  }
+  #homepage {
+    margin-top: 20%;
+  }
